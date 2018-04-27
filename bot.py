@@ -1,6 +1,6 @@
 from __future__ import print_function
 from multiprocessing import Process, Queue
-from types import SimpleNamespace as Namespace
+from types import SimpleNamespace as X
 import requests, json, time
 
 
@@ -18,7 +18,7 @@ class Bot:
 			s = requests.Session() # Each worker has his own request instance
 			p = Process(target=self.process_update, args=(q,n,))
 			processes.append(p)
-			self.workers[n] = {'session's:'update':q}
+			self.workers[n] = {'session':s, 'update':q}
 		[x.start() for x in processes] # Starting all workers
 
 	def process_update(self, q, num):
